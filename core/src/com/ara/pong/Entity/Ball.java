@@ -42,7 +42,7 @@ public class Ball {
     private void updateBall() {
         ball.x = Pos.x;
         ball.y = Pos.y;
-        if(Intersector.overlaps(ball, Paddle.gPaddle())) {
+        if(Intersector.overlaps(ball, Paddle.gPaddle()) || Intersector.overlaps(ball, ComputerPaddle.gPaddle())) {
             speedX *= -1;
         }
         //top and bottom border
@@ -50,5 +50,9 @@ public class Ball {
             speedY *= -1;
         }
 
+    }
+
+    public float gposY() {
+        return Pos.y;
     }
 }
