@@ -1,8 +1,11 @@
 package com.ara.pong.Entity;
 
+import com.ara.pong.GameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class Ball {
@@ -12,10 +15,14 @@ public class Ball {
     private Circle ball;
     private float speedY = 120;
     private float speedX = 150;
+    private GameScreen gameScreen;
+    // private Rectangle paddle;
 
-    public Ball() {
+    public Ball(GameScreen gameScreen) {
         Pos = new Vector2(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
         ball = new Circle(Pos, ball_radius);
+        this.gameScreen = gameScreen;
+        // this.paddle = Paddle.gPaddle();
     }
 
     public void render(ShapeRenderer shapeRenderer) {
@@ -28,19 +35,20 @@ public class Ball {
     }
 
     private void tick(float delta) {
-        Pos.x += speedX * delta;
-        Pos.y += speedY * delta;
+        Pos.x -= speedX * delta;
+        Pos.y -= speedY * delta;
     }
 
     private void updateBall() {
         ball.x = Pos.x;
         ball.y = Pos.y;
-        if(Pos.x >= Gdx.graphics.getWidth() || Pos.x <= 0) {
+        if(Intersector.overlaps(ball, Paddle.gPaddle())) {
             speedX *= -1;
         }
         //top and bottom border
         if(Pos.y > Gdx.graphics.getHeight() - 15 - 10 || Pos.y < 0 + 15 + 10) { 
             speedY *= -1;
         }
+
     }
 }

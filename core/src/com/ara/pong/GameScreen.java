@@ -12,22 +12,24 @@ public class GameScreen extends ScreenAdapter {
 
 	private ShapeRenderer shapeRenderer;
 	private Ball ball;
-	private Paddle Player_paddle;
+	private Paddle player_paddle;
+
 
 	@Override
 	public void show () {
 		shapeRenderer = new ShapeRenderer();
-		ball = new Ball();
-		Player_paddle = new Paddle();
+		ball = new Ball(this);
+		player_paddle = new Paddle();
 	}
 
     @Override
 	public void render (float delta) {
 		ball.update(delta);
+		player_paddle.update(delta);
     	ScreenUtils.clear(0, 0, 0, 1);
 		// Gdx.app.log("GameScreen", "Render");
 		shapeRenderer.begin(ShapeType.Filled);
-		Player_paddle.render(shapeRenderer);
+		player_paddle.render(shapeRenderer);
 		ball.render(shapeRenderer);
 		shapeRenderer.end();
 	}
@@ -43,7 +45,7 @@ public class GameScreen extends ScreenAdapter {
 	}
 
 	public Paddle gPaddle() {
-		return Player_paddle;
+		return player_paddle;
 	}
 
 }
