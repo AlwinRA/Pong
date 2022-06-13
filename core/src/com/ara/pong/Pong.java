@@ -17,7 +17,7 @@ public class Pong extends Game {
 	
 	@Override
 	public void dispose () {
-		Gdx.app.log("Pong", "Dispose");
+		// Gdx.app.log("Pong", "Dispose");
 		this.getScreen().dispose();
 	}
 }

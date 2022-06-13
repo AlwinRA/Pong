@@ -21,7 +21,7 @@ public class ComputerPaddle {
         this.gameScreen = gameScreen;
         rectangle_height = 86f;
         rectangle_width = 24f;
-        Pos = new Vector2(Gdx.graphics.getWidth() - 10, Gdx.graphics.getHeight() / 2);
+        Pos = new Vector2(Gdx.graphics.getWidth() - 34, Gdx.graphics.getHeight() / 2);
         zpaddle = new Rectangle(Pos.x, Pos.y, rectangle_width, rectangle_height);
     }
 
@@ -38,7 +38,7 @@ public class ComputerPaddle {
     }
 
     private void updatePaddle() {
-        Pos.y = gameScreen.gBall().gposY();
+        Pos.y = gameScreen.gBall().gposY() - 50;
         zpaddle.x = Pos.x;
         zpaddle.y = Pos.y;
     }
